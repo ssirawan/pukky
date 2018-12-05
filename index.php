@@ -22,10 +22,14 @@ if ( sizeof($request_array['events']) > 0 )
 		$text = $event['message']['text'];
 	
 		$hello = array('สวัสดี','สวัสดีครับ','สวัสดีค่ะ','Hi','Hello','hello');
-		for($i=0,$i++,$i=5) {if ($text = $hello[$i]){
-			$reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';}
-	}
+		for($i=0,$i++,$i=5) 
+			{if ($text = $hello[$i])
+				{	stop;
+					$reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';
+				}
+			}
     
+	}
   }
   else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
