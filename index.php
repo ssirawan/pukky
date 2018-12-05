@@ -17,21 +17,23 @@ if ( sizeof($request_array['events']) > 0 )
 
   if ( $event['type'] == 'message' ) 
   {
-   if( $event['message']['type'] == 'text' )
-   {
-    $text = $event['message']['text'];
+	if( $event['message']['type'] == 'text' )
+	{
+		$text = $event['message']['text'];
 	
-	$hello = array('สวัสดี','สวัสดีครับ','สวัสดีค่ะ','Hi','Hello','hello');
-	foreach ($hello as $text) {$reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';}
-	   }
+		$hello = array('สวัสดี','สวัสดีครับ','สวัสดีค่ะ','Hi','Hello','hello');
+		for($i=0,$i++,$i=5) {if ($text = $hello[i]){
+			$reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';}
+	}
     
-   }
-   else
+  }
+  else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
   
   }
   else
    $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
+
  
   if( strlen($reply_message) > 0 )
   {
