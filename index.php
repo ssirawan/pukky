@@ -22,11 +22,8 @@ if ( sizeof($request_array['events']) > 0 )
     $text = $event['message']['text'];
 	   if{
 		   $hello = array('สวัสดี','สวัสดีครับ','สวัสดีค่ะ','Hi','Hello','hello')
-		   while(i=0,i++,5)
-		   { if $text = $hello[i]
-			   stop;
-		   }
-		   $reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';
+		   foreach ($hello as $text) {
+		   $reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';}
 	   }
 	   
     
