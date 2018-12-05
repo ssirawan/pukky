@@ -25,6 +25,7 @@ if ( sizeof($request_array['events']) > 0 )
 		for($i=0;$i<=5;$i++) 
 			{if ($text = '$hello[$i]')
 				{$reply_message = "ดีจ้า เราชื่อปุ๊กกี้";}
+			 else $reply_message = "ดีจ้า เราชื่อปุ๊กกี้";
 			}
     
 	}
