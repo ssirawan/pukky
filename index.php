@@ -24,9 +24,7 @@ if ( sizeof($request_array['events']) > 0 )
 		$hello = array('สวัสดี','สวัสดีครับ','สวัสดีค่ะ','Hi','Hello','hello');
 		for($i=0,$i++,$i=5) 
 			{if ($text = $hello[$i])
-				{	stop;
-					$reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';
-				}
+				{$reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';}
 			}
     
 	}
