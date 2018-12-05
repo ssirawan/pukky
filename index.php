@@ -20,15 +20,12 @@ if ( sizeof($request_array['events']) > 0 )
 				if( $event['message']['type'] == 'text' )
 				{
 					$text = $event['message']['text'];
-					// $hello = array('hi','hello','hey','สวัสดี','หวัดดี');
-					// for ($i=0;$i<=4;$i++)
-					// {if($text = $hello[$i])
-						// $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
-					 // else
-						// $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
-					// }
+					if ($text = 'hi')
+					{
+						$reply_message = 'hi';
+					}
 					
-					$reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
+					else $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
 				}
 				else
 					$reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
