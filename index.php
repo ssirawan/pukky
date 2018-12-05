@@ -20,12 +20,10 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	   if{
-		   $hello = array('สวัสดี','สวัสดีครับ','สวัสดีค่ะ','Hi','Hello','hello');
-		   foreach ($hello as $text) {
-		   $reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';}
+	
+	$hello = array('สวัสดี','สวัสดีครับ','สวัสดีค่ะ','Hi','Hello','hello');
+	foreach ($hello as $text) {$reply_message = 'ดีจ้า เราชื่อปุ๊กกี้';}
 	   }
-	   
     
    }
    else
