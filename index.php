@@ -1,10 +1,5 @@
 <?php
 
-require_once 'autoload.php';
-use 'Logger.php';
-use 'StreamHandler.php';
-use 'FirePHPHandler.php';
-
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'KAqNx0+niWFXmr6kBFMM/m2P600prLBti2wl7YDpdvb4lV+OSVRegqRJxuHqhq9UuyxnEBPRfI+W6LjLKzctQU+cJwCLJAFKZ0e8+iwqJJAnnmS1VvxWlYefUlLfJV/ZunwddeU7cLK2/O/EJMeDYgdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
