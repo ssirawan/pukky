@@ -33,8 +33,9 @@ if ( sizeof($request_array['events']) > 0 )
 	$reply_message = "$yyy[0]";
     }
     else
+    {
 	$add = pg_query($db,"INSERT INTO Rec VALUES ('$text')");
-	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";
+	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";}
    }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
