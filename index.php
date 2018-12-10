@@ -1,4 +1,9 @@
 <?php
+$db = pg_connect("host = ec2-107-21-125-209.compute-1.amazonaws.com port=5432 dbname=dc3tivj0r52gsf user=mpwiqbtiiesnzo password=78194c7e081845f6138d252da9e93ee66a5107de8e5d307a0f2a63be2c05d055");
+echo $db;
+
+pg_query($db,"CREATE TABLE AAA (number int NOT NULL)");
+pg_query($db,"INSERT INTO number VALUES 0");
 
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
@@ -17,36 +22,12 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	$car = array('"1"',"1","ค้นหารถ","รถ","หารถ","ยี่ห้อรถ");
-	$tel = array("tel","เบอร์","หาเบอร์","2",'"2"',"โทร","เบอร์โทร");
-	$check = 0;
-	
-	foreach ($car as $value)
-	{
-		if($text == $value)
-		{
-			$check=1;
-		}
-	}
-	foreach ($tel as $value)
-	{
-		if($text == $value)
-		{
-			$check=2;
-		}
-	}
-	
-	if($check ==1)
-	{
-		$reply_message = 'ตอนนี้มีรถอยู่ในระบบจำนวน 20 คัน';
-	}
-	elseif($check ==2)
-	{
-		$reply_message = 'อู่คุณวิชัย 023334444';
-	}
-		
-	else
-		$reply_message = 'พิมพ์ "1" เมื่อต้องการค้นหารถ, พิมพ์ "2" เมื่อต้องการค้นหาเบอร์ติดต่อของบริษัท, พิมพ์ "3" เมื่อต้องการตรวจสอบการเงิน';
+	   if($text !=1)
+	   {$reply_message = 'พิมพ์ "1" เพื่อบวกเลข'};
+	   else
+		   $add = pg_query($db,"SELECT * FROM number");
+	           $add += $text;
+	           $reply_message = #add;
    }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
