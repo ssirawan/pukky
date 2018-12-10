@@ -26,16 +26,15 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	   if($text == 'total')
-	   {
-		   $aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
-	           $bbb = pg_fetch_row($aaa);
-		   $reply_message = "$bbb[0]";
-	   }
-	   
-	   else
-		   $add = pg_query($db,"INSERT INTO Rec VALUES ('$text')");
-	           $reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";
+    if($text == 'total')
+    {
+	$aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
+	$bbb = pg_fetch_row($aaa);
+	$reply_message = "$bbb[0]";
+    }
+    else
+	$add = pg_query($db,"INSERT INTO Rec VALUES ('$text')");
+	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";
    }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
