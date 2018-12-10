@@ -26,7 +26,7 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	   if($text == 'countrow')
+	   if($text == 'total')
 	   {
 		   $aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
 	           $bbb = pg_fetch_row($aaa);
@@ -35,7 +35,7 @@ if ( sizeof($request_array['events']) > 0 )
 	   
 	   else
 		   $add = pg_query($db,"INSERT INTO Rec VALUES ('$text')");
-	           $reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ countrow เพื่อตรวจสอบจำนวนข้อมูลในระบบ";
+	           $reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";
    }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
