@@ -7,7 +7,7 @@ pg_query($db,"CREATE TABLE Rec (Reply varchar(40) NOT NULL)");
 pg_query($db,"INSERT INTO Rec VALUES ('asdfghjkl')");
 $aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
 $bbb = pg_fetch_row($aaa);
-echo "$bbb[0]<br>";
+echo "result = $bbb[0] <br>";
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'KAqNx0+niWFXmr6kBFMM/m2P600prLBti2wl7YDpdvb4lV+OSVRegqRJxuHqhq9UuyxnEBPRfI+W6LjLKzctQU+cJwCLJAFKZ0e8+iwqJJAnnmS1VvxWlYefUlLfJV/ZunwddeU7cLK2/O/EJMeDYgdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
