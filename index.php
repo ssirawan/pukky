@@ -3,8 +3,8 @@ $db = pg_connect("host = ec2-107-21-125-209.compute-1.amazonaws.com port=5432 db
 echo $db;
 
 pg_query($db,"CREATE TABLE AAA (Reply varchar(40) NOT NULL)");
-pg_query($db,"INSERT INTO Reply VALUES 'aaaaa'");
-$aaa = pg_query($db,"SELECT COUNT(*) FROM Reply ");
+pg_query($db,"INSERT INTO AAA VALUES 'asdfghjkl'");
+$aaa = pg_query($db,"SELECT COUNT(*) FROM AAA ");
 $bbb = pg_fetch_array($aaa);
 echo "$bbb[0]<br>";
 
