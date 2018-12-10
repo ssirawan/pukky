@@ -26,7 +26,7 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	   if($text = 'countrow')
+	   if($text == 'countrow')
 	   {
 		   $aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
 	           $bbb = pg_fetch_row($aaa);
