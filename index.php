@@ -2,9 +2,11 @@
 $db = pg_connect("host = ec2-107-21-125-209.compute-1.amazonaws.com port=5432 dbname=dc3tivj0r52gsf user=mpwiqbtiiesnzo password=78194c7e081845f6138d252da9e93ee66a5107de8e5d307a0f2a63be2c05d055");
 echo $db;
 
-pg_query($db,"CREATE TABLE AAA (number int NOT NULL)");
-pg_query($db,"INSERT INTO number VALUES 0");
-
+//pg_query($db,"CREATE TABLE AAA (number int NOT NULL)");
+//pg_query($db,"INSERT INTO number VALUES 5");
+$aaa = pg_query($db,"COUNT(*) FROM number");
+$bbb = pg_fetch_array($aaa);
+echo $result = $bbb[0];
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'KAqNx0+niWFXmr6kBFMM/m2P600prLBti2wl7YDpdvb4lV+OSVRegqRJxuHqhq9UuyxnEBPRfI+W6LjLKzctQU+cJwCLJAFKZ0e8+iwqJJAnnmS1VvxWlYefUlLfJV/ZunwddeU7cLK2/O/EJMeDYgdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
@@ -22,12 +24,15 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	   if($text !=1)
-	   {$reply_message = 'พิมพ์ "1" เพื่อบวกเลข'};
+	   if($text = 'countrow')
+	   {
+		   $count = pg_query($db,"COUNT(*) FROM answer");
+		   $reply_message = pg_quer};
 	   else
 		   $add = pg_query($db,"SELECT * FROM number");
+	   	   $ans = pg_fetch_array($add)[0]
 	           $add += $text;
-	           $reply_message = #add;
+	           $reply_message = $add;
    }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
