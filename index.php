@@ -30,7 +30,7 @@ if ( sizeof($request_array['events']) > 0 )
 		   $reply_message = pg_quer};
 	   else
 		   $add = pg_query($db,"SELECT * FROM number");
-	   	   $ans = pg_fetch_array($add)[0]
+	   	   $ans = pg_fetch_array($add)[0];
 	           $add += $text;
 	           $reply_message = $add;
    }
