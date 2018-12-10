@@ -4,7 +4,7 @@ echo $db;
 
 //pg_query($db,"CREATE TABLE AAA (number int NOT NULL)");
 //pg_query($db,"INSERT INTO number VALUES 5");
-$aaa = pg_query($db,"COUNT(*) FROM number");
+$aaa = pg_query($db,"SELECT COUNT(*) FROM number ");
 $bbb = pg_fetch_array($aaa);
 echo $result = $bbb[0];
 
@@ -26,8 +26,9 @@ if ( sizeof($request_array['events']) > 0 )
     $text = $event['message']['text'];
 	   if($text = 'countrow')
 	   {
-		   $count = pg_query($db,"COUNT(*) FROM answer");
-		   $reply_message = pg_quer};
+		   $count = pg_query($db,"SELECT COUNT(*) FROM answer");
+		   //$reply_message = pg_quer};
+	   }
 	   else
 		   $add = pg_query($db,"SELECT * FROM number");
 	   	   $ans = pg_fetch_array($add)[0];
