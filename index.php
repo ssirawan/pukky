@@ -30,7 +30,8 @@ if ( sizeof($request_array['events']) > 0 )
 	   {
 		   $aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
 	           $bbb = pg_fetch_row($aaa);
-		   $reply_message = "$bbb[0]"};
+		   $reply_message = "$bbb[0]";
+	   }
 	   
 	   else
 		   $add = pg_query($db,"INSERT INTO Rec VALUES ('$text')");
