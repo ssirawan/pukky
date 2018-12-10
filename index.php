@@ -4,7 +4,7 @@ echo $db;
 
 
 pg_query($db,"CREATE TABLE Rec (Reply varchar(40) NOT NULL)");
-pg_query($db,"INSERT INTO Rec VALUES 'asdfghjkl'");
+pg_query($db,"INSERT INTO Rec VALUES ('asdfghjkl')");
 $aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
 $bbb = pg_fetch_array($aaa);
 echo "$bbb[0]<br>";
