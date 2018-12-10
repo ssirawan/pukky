@@ -28,9 +28,9 @@ if ( sizeof($request_array['events']) > 0 )
     $text = $event['message']['text'];
     if($text == 'total')
     {
-	$aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
-	$bbb = pg_fetch_row($aaa);
-	$reply_message = "$bbb[0]";
+	$qq = pg_query($db,"SELECT COUNT(*) FROM Rec");
+	$yyy = pg_fetch_row($qq);
+	$reply_message = "$yyy[0]";
     }
     else
 	$add = pg_query($db,"INSERT INTO Rec VALUES ('$text')");
