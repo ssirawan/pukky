@@ -64,6 +64,7 @@ if ( sizeof($request_array['events']) > 0 )
  }
 }
 echo "OK";
+echo "$userid <br>";
 
 
 
