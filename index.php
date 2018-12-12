@@ -24,7 +24,7 @@ if ( sizeof($request_array['events']) > 0 )
   if ( $event['type'] == 'message' ) 
   {
    $userid = $event['source']['userid'];
-   $findtable = pg_query($db,"SELECT * FROM information_schema.columns WHERE table_schema = 'public' table_name = '$userid'") >0;
+   $findtable = pg_query($db,"SELECT * FROM information_schema.columns WHERE table_schema = 'public' table_name = '$userid'");
    if( pg_fetch_result($findtable) == 0)
    {
 	   pg_query($db,"CREATE TABLE '$userid' (Reply varchar(100) NOT NULL)");
