@@ -23,7 +23,7 @@ if ( sizeof($request_array['events']) > 0 )
   $reply_token = $event['replyToken'];
   if ( $event['type'] == 'message' ) 
   {
-   $userid = $event['source']['userid'];
+   $userid = $event['source']['userId'];
    
    $findtable = pg_query($db,"SELECT COUNT(*) FROM '$userid'");
    if( pg_fetch_result($findtable) == 0)
