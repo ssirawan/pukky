@@ -25,10 +25,10 @@ if ( sizeof($request_array['events']) > 0 )
   {
    $userid = $event['source']['userId'];
    
-   $findtable = pg_query($db,"SELECT COUNT(*) FROM '$userid'");
+   $findtable = pg_query($db,"SELECT COUNT(*) FROM $userid");
    if( pg_fetch_result($findtable) == 0)
    {
-	   pg_query($db,"CREATE TABLE '$userid' (Reply varchar(100) NOT NULL)");
+	   pg_query($db,"CREATE TABLE $userid (Reply varchar(100) NOT NULL)");
    }
    if( $event['message']['type'] == 'text' )
    {
@@ -39,7 +39,7 @@ if ( sizeof($request_array['events']) > 0 )
    	}
     	elseif($text == 'total')
     	{
-	$qq = pg_query($db,"SELECT COUNT(*) FROM '$userid' ");
+	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
 	$yyy = pg_fetch_row($qq);
 	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล";
     	}
