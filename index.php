@@ -23,12 +23,18 @@ if ( sizeof($request_array['events']) > 0 )
   $reply_token = $event['replyToken'];
   if ( $event['type'] == 'message' ) 
   {
+   $userid = $event['source']['userid'];
+   $findtable = pg_query($db,"SELECT * FROM information_schema.columns WHERE table_schema = 'public' table_name = '$userid'") >0;
+   if( pg_fetch_result($findtable) == 0)
+   {
+	   pg_query($db,"CREATE TABLE '$userid' (Reply varchar(100) NOT NULL)");
+   }
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
     if($text == 'total')
     {
-	$qq = pg_query($db,"SELECT COUNT(*) FROM Rec");
+	$qq = pg_query($db,"SELECT COUNT(*) FROM '$userid' ");
 	$yyy = pg_fetch_row($qq);
 	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล";
     }
@@ -58,6 +64,9 @@ if ( sizeof($request_array['events']) > 0 )
  }
 }
 echo "OK";
+
+
+
 function send_reply_message($url, $post_header, $post_body)
 {
  $ch = curl_init($url);
