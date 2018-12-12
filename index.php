@@ -45,7 +45,7 @@ if ( sizeof($request_array['events']) > 0 )
     	}
     	else
     	{
-	$add = pg_query($db,"INSERT INTO Rec VALUES ('$text')");
+	$add = pg_query($db,"INSERT INTO $userid VALUES ('$text')");
 	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";}
    	}
    else
