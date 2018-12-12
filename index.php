@@ -25,7 +25,7 @@ if ( sizeof($request_array['events']) > 0 )
   {
    $userid = $event['source']['userid'];
    
-   $findtable = pg_query($db,"SELECT COUNT(*) FROM $userid");
+   $findtable = pg_query($db,"SELECT COUNT(*) FROM '$userid'");
    if( pg_fetch_result($findtable) == 0)
    {
 	   pg_query($db,"CREATE TABLE '$userid' (Reply varchar(100) NOT NULL)");
@@ -37,7 +37,7 @@ if ( sizeof($request_array['events']) > 0 )
    	{
 	   $reply_message = $userid;
    	}
-    	if($text == 'total')
+    	elseif($text == 'total')
     	{
 	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
 	$yyy = pg_fetch_row($qq);
