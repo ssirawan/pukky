@@ -39,7 +39,7 @@ if ( sizeof($request_array['events']) > 0 )
    	}
     	elseif($text == 'total')
     	{
-	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
+	$qq = pg_query($db,"SELECT COUNT(*) FROM '$userid' ");
 	$yyy = pg_fetch_row($qq);
 	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล";
     	}
