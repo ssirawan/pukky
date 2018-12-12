@@ -33,21 +33,21 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-   if($text=='showid')
-   {
+   	if($text=='showid')
+   	{
 	   $reply_message = $userid;
-   }
-    if($text == 'total')
-    {
-	$qq = pg_query($db,"SELECT COUNT(*) FROM '$userid' ");
+   	}
+    	if($text == 'total')
+    	{
+	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
 	$yyy = pg_fetch_row($qq);
 	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล";
-    }
-    else
-    {
+    	}
+    	else
+    	{
 	$add = pg_query($db,"INSERT INTO Rec VALUES ('$text')");
 	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";}
-   }
+   	}
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
   
