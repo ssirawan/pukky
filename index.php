@@ -24,6 +24,10 @@ if ( sizeof($request_array['events']) > 0 )
   if ( $event['type'] == 'message' ) 
   {
    $userid = $event['source']['userid'];
+   if($text=='showid')
+   {
+	   $reply_message = $userid;
+   }
    $findtable = pg_query($db,"SELECT COUNT(*) FROM $userid");
    if( pg_fetch_result($findtable) == 0)
    {
