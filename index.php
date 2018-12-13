@@ -47,6 +47,11 @@ if ( sizeof($request_array['events']) > 0 )
 		}
 		$reply_message = "$custlist";
 	}
+	elseif($text=='date')
+	{
+		$datetoday = date("Y/m/d");
+		$reply_message = '$datetoday';
+	}
     	elseif($text == 'Total')
     	{
 	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
