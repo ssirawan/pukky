@@ -50,7 +50,7 @@ if ( sizeof($request_array['events']) > 0 )
 	elseif($text=='date')
 	{
 		$datetoday = date("Y/m/d");
-		$reply_message = '$datetoday';
+		$reply_message = $datetoday;
 	}
     	elseif($text == 'Total')
     	{
