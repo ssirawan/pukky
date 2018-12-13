@@ -37,6 +37,16 @@ if ( sizeof($request_array['events']) > 0 )
    	{
 	   $reply_message = $userid;
    	}
+	elseif ($text=='Showdata')
+	{
+		$result = pg_query($db,"SELECT Reply FROM $userid");
+		while ($list = pg_fetch_row($result))
+		{
+			$cust = $list[0]."\n";
+			$custlist .= $cust;
+		}
+		$reply_message = "$custlist";
+	}
     	elseif($text == 'Total')
     	{
 	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
