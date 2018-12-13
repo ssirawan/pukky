@@ -52,6 +52,11 @@ if ( sizeof($request_array['events']) > 0 )
 		$datetoday = date("Y/m/d");
 		$reply_message = $datetoday;
 	}
+	elseif($text=='time')
+	{
+		$datetoday = date("h:i:sa");
+		$reply_message = $datetoday;
+	}
     	elseif($text == 'Total')
     	{
 	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
