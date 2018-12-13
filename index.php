@@ -37,7 +37,7 @@ if ( sizeof($request_array['events']) > 0 )
    	{
 	   $reply_message = $userid;
    	}
-    	elseif($text == 'total')
+    	elseif($text == 'Total')
     	{
 	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
 	$yyy = pg_fetch_row($qq);
@@ -46,7 +46,7 @@ if ( sizeof($request_array['events']) > 0 )
     	else
     	{
 	$add = pg_query($db,"INSERT INTO $userid VALUES ('$text')");
-	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";}
+	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'Total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";}
    	}
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
