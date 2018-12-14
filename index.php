@@ -49,12 +49,12 @@ if ( sizeof($request_array['events']) > 0 )
 	{
 		if($text == $value)
 		{
-			$y = pg_query($db,"SELECT * FROM polls WHERE brands=$text");
+			$y = pg_query($db,"SELECT * FROM Poll WHERE brands=$text");
 			while($x = pg_fetch_row($y)[1])
 			{
 				$x+=1;
 			}
-			pg_query($db,"UPDATE polls SET nums=$count WHERE brands = $text");
+			pg_query($db,"UPDATE Poll SET nums=$count WHERE brands = $text");
 		}
 	}
 
@@ -72,7 +72,16 @@ if ( sizeof($request_array['events']) > 0 )
 		}
 		$reply_message = "$custlist";
 	}
-	
+	elseif ($text=='Showpoll')
+	{
+		$result = pg_query($db,"SELECT * FROM Poll");
+		while ($list = pg_fetch_row($result))
+		{
+			$car = $list[0]." ".$list[1]."คน"."\n";
+			$carpoll .= $car;
+		}
+		$reply_message = "$carpoll";
+	}
 	elseif($text=='date')
 	{
 		$datetoday = date("Y/m/d");
