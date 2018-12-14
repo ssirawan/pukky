@@ -54,7 +54,7 @@ if ( sizeof($request_array['events']) > 0 )
 			{
 				$x+=1;
 			}
-			pg_query($db,"UPDATE Poll SET nums=$count WHERE brands = $text");
+			pg_query($db,"UPDATE Poll SET nums=$x WHERE brands = $text");
 		}
 	}
 
