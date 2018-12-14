@@ -8,6 +8,9 @@ pg_query($db,"INSERT INTO polls (brands,nums) VALUES ('benz',0)");
 pg_query($db,"INSERT INTO polls (brands,nums) VALUES ('toyota',0)");
 
 $carlist=('bmw','benz','toyota');
+$result = pg_query($db,"SELECT * FROM polls");
+while ($list = pg_fetch_row($result))
+echo  "result = $list[0].$list[1]<br>";
 /*
 pg_query($db,"CREATE TABLE Rec (Reply varchar(40) NOT NULL)");
 pg_query($db,"INSERT INTO Rec VALUES ('asdfghjkl')");
