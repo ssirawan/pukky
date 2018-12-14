@@ -2,6 +2,12 @@
 $db = pg_connect("host = ec2-107-21-125-209.compute-1.amazonaws.com port=5432 dbname=dc3tivj0r52gsf user=mpwiqbtiiesnzo password=78194c7e081845f6138d252da9e93ee66a5107de8e5d307a0f2a63be2c05d055");
 echo $db;
 
+pg_query($db,"CREATE TABLE poll (brand varchar(10) NOT NULL, num int(100) NOT NULL)");
+pg_query($db,"INSERT INTO poll VALUES ('bmw',0)");
+pg_query($db,"INSERT INTO poll VALUES ('benz',0)");
+pg_query($db,"INSERT INTO poll VALUES ('toyota',0)");
+
+$carlist=('bmw','benz','toyota');
 /*
 pg_query($db,"CREATE TABLE Rec (Reply varchar(40) NOT NULL)");
 pg_query($db,"INSERT INTO Rec VALUES ('asdfghjkl')");
@@ -33,6 +39,13 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
+	foreach($carlist as $value)
+	{
+		if($text == $value)
+		{
+			pg_query($db,"UPDATE poll SET num+=1 WHERE brand = $text);
+		}
+	}
    	if($text=='showid')
    	{
 	   $reply_message = $userid;
@@ -46,6 +59,16 @@ if ( sizeof($request_array['events']) > 0 )
 			$custlist .= $cust;
 		}
 		$reply_message = "$custlist";
+	}
+	elseif($text=='showpoll')
+	{
+		$result = pg_query($db,"SELECT num FROM poll");
+		while ($list = pg_fetch_row($result))
+		{
+			$carnum = $list[0]."\n";
+			$carpoll .= $carnum;
+		}
+		$reply_message = "$carpoll";
 	}
 	elseif($text=='date')
 	{
