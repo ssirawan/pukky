@@ -39,6 +39,7 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
+	  /*
 	foreach($carlist as $value)
 	{
 		if($text == $value)
@@ -50,7 +51,7 @@ if ( sizeof($request_array['events']) > 0 )
 			}
 			pg_query($db,"UPDATE polls SET nums=$count WHERE brands = $text");
 		}
-	}
+	}*/
    	if($text=='showid')
    	{
 	   $reply_message = $userid;
