@@ -64,7 +64,7 @@ if ( sizeof($request_array['events']) > 0 )
 	}
 	elseif($text=='showpoll')
 	{
-		$result = pg_query($db,"SELECT num FROM poll"); 
+		$result = pg_query($db,"SELECT num FROM 'poll'"); 
 		while ($list = pg_fetch_row($result))
 		{
 			$carnum = $list[0]."\n";
