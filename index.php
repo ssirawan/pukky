@@ -43,7 +43,9 @@ if ( sizeof($request_array['events']) > 0 )
 	{
 		if($text == $value)
 		{
-			pg_query($db,"UPDATE poll SET num+=1 WHERE brand = $text);
+			pg_qurey($db,"SELECT num FROM poll WHERE brand=$text");
+			$count+=1;
+			pg_query($db,"UPDATE poll SET num=$count WHERE brand = $text);
 		}
 	}
    	if($text=='showid')
