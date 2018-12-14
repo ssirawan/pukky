@@ -50,10 +50,9 @@ if ( sizeof($request_array['events']) > 0 )
 		if($text == $value)
 		{
 			$y = pg_query($db,"SELECT * FROM Poll WHERE brands=$text");
-			while($x = pg_fetch_row($y)[1])
-			{
-				$x+=1;
-			}
+			$x = pg_fetch_row($y)[1]
+			$x+=1;
+			
 			pg_query($db,"UPDATE Poll SET nums=$x WHERE brands = $text");
 		}
 	}
