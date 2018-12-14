@@ -7,7 +7,7 @@ pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('bmw',0)");
 pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('benz',0)");
 pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('toyota',0)");
 */
-//$carlist=('bmw','benz','toyota');
+
 $result = pg_query($db,"SELECT * FROM Poll");
 while ($list = pg_fetch_row($result))
 echo  "result = $list[0].$list[1]<br>";
@@ -17,7 +17,7 @@ pg_query($db,"INSERT INTO Rec VALUES ('asdfghjkl')");
 $aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
 $bbb = pg_fetch_row($aaa);
 echo "result = $bbb[0] <br>";
-
+*/
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'KAqNx0+niWFXmr6kBFMM/m2P600prLBti2wl7YDpdvb4lV+OSVRegqRJxuHqhq9UuyxnEBPRfI+W6LjLKzctQU+cJwCLJAFKZ0e8+iwqJJAnnmS1VvxWlYefUlLfJV/ZunwddeU7cLK2/O/EJMeDYgdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
@@ -42,7 +42,9 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-	  /*
+	 
+	$carlist=array('bmw','benz','toyota');
+	 
 	foreach($carlist as $value)
 	{
 		if($text == $value)
@@ -54,8 +56,8 @@ if ( sizeof($request_array['events']) > 0 )
 			}
 			pg_query($db,"UPDATE polls SET nums=$count WHERE brands = $text");
 		}
-	}*/
-/*
+	}
+
    	if($text=='showid')
    	{
 	   $reply_message = $userid;
@@ -128,5 +130,5 @@ function send_reply_message($url, $post_header, $post_body)
  $result = curl_exec($ch);
  curl_close($ch);
  return $result;
-}*/
+}
 ?>
