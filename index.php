@@ -4,8 +4,6 @@ echo $db;
 
 pg_query($db,"CREATE TABLE polls (brands varchar(10) NOT NULL, nums int NOT NULL)");
 pg_query($db,"INSERT INTO polls (brands,nums) VALUES ('bmw',0)");
-pg_query($db,"INSERT INTO polls (brands,nums) VALUES ('benz',0)");
-pg_query($db,"INSERT INTO polls (brands,nums) VALUES ('toyota',0)");
 
 $carlist=('bmw','benz','toyota');
 $result = pg_query($db,"SELECT * FROM polls");
