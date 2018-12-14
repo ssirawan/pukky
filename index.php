@@ -7,7 +7,7 @@ pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('bmw',0)");
 pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('benz',0)");
 pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('toyota',0)");
 */
-$carlist=('bmw','benz','toyota');
+//$carlist=('bmw','benz','toyota');
 $result = pg_query($db,"SELECT * FROM Poll");
 while ($list = pg_fetch_row($result))
 echo  "result = $list[0].$list[1]<br>";
