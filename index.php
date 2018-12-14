@@ -2,10 +2,10 @@
 $db = pg_connect("host = ec2-107-21-125-209.compute-1.amazonaws.com port=5432 dbname=dc3tivj0r52gsf user=mpwiqbtiiesnzo password=78194c7e081845f6138d252da9e93ee66a5107de8e5d307a0f2a63be2c05d055");
 echo $db;
 
-pg_query($db,"CREATE TABLE poll (brand varchar(10) NOT NULL, num int NOT NULL)");
-pg_query($db,"INSERT INTO poll VALUES ('bmw',0)");
-pg_query($db,"INSERT INTO poll VALUES ('benz',0)");
-pg_query($db,"INSERT INTO poll VALUES ('toyota',0)");
+pg_query($db,"CREATE TABLE polls (brands varchar(10) NOT NULL, nums int NOT NULL)");
+pg_query($db,"INSERT INTO polls (brands,nums) VALUES ('bmw',0)");
+pg_query($db,"INSERT INTO polls (brands,nums) VALUES ('benz',0)");
+pg_query($db,"INSERT INTO polls (brands,nums) VALUES ('toyota',0)");
 
 $carlist=('bmw','benz','toyota');
 /*
@@ -43,12 +43,12 @@ if ( sizeof($request_array['events']) > 0 )
 	{
 		if($text == $value)
 		{
-			$y = pg_query($db,"SELECT * FROM poll WHERE brand=$text");
+			$y = pg_query($db,"SELECT * FROM polls WHERE brands=$text");
 			while($x = pg_fetch_row($y))
 			{
 				$count=$x[1]+1;
 			}
-			pg_query($db,"UPDATE poll SET num=$count WHERE brand = $text");
+			pg_query($db,"UPDATE polls SET nums=$count WHERE brands = $text");
 		}
 	}
    	if($text=='showid')
