@@ -1,17 +1,17 @@
 <?php
 $db = pg_connect("host = ec2-107-21-125-209.compute-1.amazonaws.com port=5432 dbname=dc3tivj0r52gsf user=mpwiqbtiiesnzo password=78194c7e081845f6138d252da9e93ee66a5107de8e5d307a0f2a63be2c05d055");
 echo $db;
-
+/*
 pg_query($db,"CREATE TABLE Poll (brands varchar(10) NOT NULL, nums INT NOT NULL)");
 pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('bmw',0)");
 pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('benz',0)");
 pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('toyota',0)");
-/*
+*/
 $carlist=('bmw','benz','toyota');
 $result = pg_query($db,"SELECT * FROM Poll");
 while ($list = pg_fetch_row($result))
 echo  "result = $list[0].$list[1]<br>";
-
+/*
 pg_query($db,"CREATE TABLE Rec (Reply varchar(40) NOT NULL)");
 pg_query($db,"INSERT INTO Rec VALUES ('asdfghjkl')");
 $aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
