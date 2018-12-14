@@ -2,7 +2,7 @@
 $db = pg_connect("host = ec2-107-21-125-209.compute-1.amazonaws.com port=5432 dbname=dc3tivj0r52gsf user=mpwiqbtiiesnzo password=78194c7e081845f6138d252da9e93ee66a5107de8e5d307a0f2a63be2c05d055");
 echo $db;
 
-pg_query($db,"CREATE TABLE poll (brand varchar(10) NOT NULL, num int(100) NOT NULL)");
+pg_query($db,"CREATE TABLE poll (brand varchar(10) NOT NULL, num int NOT NULL)");
 pg_query($db,"INSERT INTO poll VALUES ('bmw',0)");
 pg_query($db,"INSERT INTO poll VALUES ('benz',0)");
 pg_query($db,"INSERT INTO poll VALUES ('toyota',0)");
