@@ -43,7 +43,7 @@ if ( sizeof($request_array['events']) > 0 )
 	{
 		if($text == $value)
 		{
-			pg_qurey($db,"SELECT num FROM poll WHERE brand=$text");
+			pg_query($db,"SELECT num FROM poll WHERE brand=$text");
 			$count+=1;
 			pg_query($db,"UPDATE poll SET num=$count WHERE brand = $text);
 		}
@@ -64,7 +64,7 @@ if ( sizeof($request_array['events']) > 0 )
 	}
 	elseif($text=='showpoll')
 	{
-		$result = pg_query($db,"SELECT num FROM poll");
+		$result = pg_query($db,"SELECT num FROM poll"); 
 		while ($list = pg_fetch_row($result))
 		{
 			$carnum = $list[0]."\n";
