@@ -1,133 +1,32 @@
 <?php
-$db = pg_connect("host = ec2-107-21-125-209.compute-1.amazonaws.com port=5432 dbname=dc3tivj0r52gsf user=mpwiqbtiiesnzo password=78194c7e081845f6138d252da9e93ee66a5107de8e5d307a0f2a63be2c05d055");
-echo $db;
-/*
-pg_query($db,"CREATE TABLE Poll (brands varchar(10) NOT NULL, nums INT NOT NULL)");
-pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('bmw',0)");
-pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('benz',0)");
-pg_query($db,"INSERT INTO Poll (brands,nums) VALUES ('toyota',0)");
-*/
-
-$result = pg_query($db,"SELECT * FROM Poll");
-while ($list = pg_fetch_row($result))
-echo  "result = $list[0].$list[1]<br>";
-/*
-pg_query($db,"CREATE TABLE Rec (Reply varchar(40) NOT NULL)");
-pg_query($db,"INSERT INTO Rec VALUES ('asdfghjkl')");
-$aaa = pg_query($db,"SELECT COUNT(*) FROM Rec ");
-$bbb = pg_fetch_row($aaa);
-echo "result = $bbb[0] <br>";
-*/
-
-$API_URL = 'https://api.line.me/v2/bot/message/reply';
-$ACCESS_TOKEN = 'KAqNx0+niWFXmr6kBFMM/m2P600prLBti2wl7YDpdvb4lV+OSVRegqRJxuHqhq9UuyxnEBPRfI+W6LjLKzctQU+cJwCLJAFKZ0e8+iwqJJAnnmS1VvxWlYefUlLfJV/ZunwddeU7cLK2/O/EJMeDYgdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
-$POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
-$request = file_get_contents('php://input');   // Get request content
-$request_array = json_decode($request, true);   // Decode JSON to Array
-if ( sizeof($request_array['events']) > 0 )
-{
- foreach ($request_array['events'] as $event)
- {
-  $reply_message = '';
-  $reply_token = $event['replyToken'];
-  if ( $event['type'] == 'message' ) 
-  {
-   $userid = $event['source']['userId'];
-   
-   $findtable = pg_query($db,"SELECT COUNT(*) FROM $userid");
-   if( pg_fetch_result($findtable) == 0)
-   {
-	   pg_query($db,"CREATE TABLE $userid (Reply varchar(100) NOT NULL)");
-   }
-   if( $event['message']['type'] == 'text' )
-   {
-    $text = $event['message']['text'];
-	 
-	$carlist=array('bmw','benz','toyota');
-	 
-	foreach($carlist as $value)
-	{
-		if($text == $value)
-		{
-			$y = pg_query($db,"SELECT * FROM Poll WHERE brands='$text'");
-			$x = pg_fetch_row($y)[1];
-			$x+=1;
-			
-			pg_query($db,"UPDATE Poll SET nums=$x WHERE brands = '$text'");
-		}
-	}
-
-   	if($text=='showid')
-   	{
-	   $reply_message = $userid;
-   	}
-	elseif ($text=='Showdata')
-	{
-		$result = pg_query($db,"SELECT Reply FROM $userid");
-		while ($list = pg_fetch_row($result))
-		{
-			$cust = $list[0]."\n";
-			$custlist .= $cust;
-		}
-		$reply_message = "$custlist";
-	}
-	elseif ($text=='Showpoll')
-	{
-		$result = pg_query($db,"SELECT * FROM Poll");
-		while ($list = pg_fetch_row($result))
-		{
-			$car = $list[0]." ".$list[1]."คน"."\n";
-			$carpoll .= $car;
-		}
-		$reply_message = "$carpoll";
-	}
-	elseif($text=='date')
-	{
-		$datetoday = date("Y/m/d");
-		$reply_message = $datetoday;
-	}
-	elseif($text=='time')
-	{
-		$datetoday = date("h:i:sa");
-		$reply_message = $datetoday;
-	}
-    	elseif($text == 'Total')
-    	{
-	$qq = pg_query($db,"SELECT COUNT(*) FROM $userid ");
-	$yyy = pg_fetch_row($qq);
-	$reply_message = "มีข้อมูลในระบบทั้งหมด ".$yyy[0]." ข้อมูล";
-    	}
-    	else
-    	{
-	$add = pg_query($db,"INSERT INTO $userid VALUES ('$text')");
-	$reply_message = "ระบบได้ทำการเพิ่ม '".$text."' เข้าสู่ฐานข้อมูลแล้ว"."\n"."กรุณาพิมพ์ 'Total' เพื่อตรวจสอบจำนวนข้อมูลในระบบ";}
-   	}
-   else
-    $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
-  
-  }
-  else
-   $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
- 
-  if( strlen($reply_message) > 0 )
-  {
-   //$reply_message = iconv("tis-620","utf-8",$reply_message);
-   $data = [
-    'replyToken' => $reply_token,
-    'messages' => [['type' => 'text', 'text' => $reply_message]]
-   ];
-   $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-   $send_result = send_reply_message($API_URL, $POST_HEADER, $post_body);
-   echo "Result: ".$send_result."\r\n";
-  }
- }
-}
-echo "OK";
-echo "$userid <br>";
 
 
+$RICH_URL = 'https://api.line.me/v2/bot/richmenu';
+$REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
+$ACCESS_TOKEN = 'sOEyFKdoKFQDFMhGL5xv2pliXwALUNCvZYG0QeHWRFXXmwbdnfv1Zdj6BkCbkK8qPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk6Vs4W/8jXaNYjLZOKTf0wnCnHoAeptCHg7CTZl+Zw4gdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
+$CHANNEL_SECRET = 'b41da5ab3d233c34e1bffc5a75a63846';
+$POST_HEADER = array('Content-Type: application/json ; charset=UTF-8', 'Authorization: Bearer ' . $ACCESS_TOKEN, 'cache-control: no-cache');
 
-function send_reply_message($url, $post_header, $post_body)
+$rich_area = array(
+		  array('bounds'=> array( 'x'=>'0','y'=>'0','width' => 1254,'height' => 850 ), 'action' = array('type'=> 'postback', 'text' =>'ดูสินค้า')),
+		  array('bounds'=> array( 'x'=>'0','y'=>'850','width' => 1258,'height' => 831 ), 'action' = array('type'=> 'postback', 'text' =>'Promotion')),
+		  array('bounds'=> array( 'x'=>'1254','y'=>'0','width' => 1246,'height' => 850 ), 'action' = array('type'=> 'postback', 'text' =>'สินค้าที่บันทึกไว้')),
+		  array('bounds'=> array( 'x'=>'1258','y'=>'850','width' => 1242,'height' => 835 ), 'action' = array('type'=> 'postback', 'text' =>'เช็คสถานะ'))
+		  );
+$rich_object = array('size'=> array('width'=>2500,'height'=>1686),'selected'=>true,
+			     'name'=>'menu','chatBarText'=>'menu','areas'=>$rich_area);
+$rich_obj_req = json_encode($rich_object, JSON_UNESCAPED_UNICODE);
+
+$rich_menu = create_rich_menu($RICH_URL,$POST_HEADER,$rich_obj_req); 
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+function create_rich_menu($post_url, $post_header, $post_body)
 {
  $ch = curl_init($url);
  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -136,7 +35,11 @@ function send_reply_message($url, $post_header, $post_body)
  curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
  $result = curl_exec($ch);
+ 	
  curl_close($ch);
- return $result;
-}
+ return $result;	
+}	
+
+
+echo $result;  
 ?>
