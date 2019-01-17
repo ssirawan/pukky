@@ -12,9 +12,9 @@ if(isset($_POST["sql"]))
 	echo "<BR>output<BR>";
 	while($row=pg_fetch_row($result)
 	{
-		for(int i=0;i<sizeof($row);i++)
+		for(int $i=0;$i<sizeof($row);$i++)
 		{
-			echo $row[i]." | ";
+			echo $row[$i]." | ";
 			
 		}
 		
