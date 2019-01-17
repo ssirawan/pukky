@@ -7,7 +7,7 @@ require_once('connection.php');
 if(isset($_POST["sql"]))
 {
 	echo $_POST["sql"]."<BR>";
-	$result=pg_query ($db,$_POST["sql"]));	
+	$result=pg_query ($db,$_POST["sql"]);	
 	echo "erro: ".pg_result_error ($result)."<BR>";
 	echo "<BR>output<BR>";
 	while($row=pg_fetch_row($result)
